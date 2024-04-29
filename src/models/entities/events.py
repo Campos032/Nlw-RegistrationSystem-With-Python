@@ -8,4 +8,8 @@ class Events(Base):
     title = Column(String, nullable=False)
     details = Column(String)
     slug = Column(String, nullable=False)
-    maximum_attendies = Column(Integer)
+    maximum_attendees = Column(Integer)
+    
+    def __repr__(self):
+        return f"Events [title={self.title}, maximum_attendees={self.maximum_attendees}]"
+    
