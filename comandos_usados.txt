@@ -1,0 +1,21 @@
+Aula1 https://www.youtube.com/watch?v=kdk853z58uk
+Aula2 https://www.youtube.com/watch?v=7p3HKP39Nfo
+Aula3 https://www.youtube.com/watch?v=m4_MtHsK58M
+
+pip install SQLAlchemy
+# ORM para SQL em pyhton(ORM (Object-Relational Mapping) é uma técnica de programação que permite converter dados entre sistemas
+incompatíveis usando a orientação a objetos, simplificando a interação com bancos de dados relacionais.)
+
+pip install pytest
+# Testes Unitários
+
+pip install Flask
+# Framework Flask para criar as rotas 
+
+pip install Flask-Cors
+# permite que suas aplicações web Flask lidem com solicitações de recursos de diferentes origens (CORS), facilitando a integração
+com front-ends hospedados em diferentes domínios.
+
+.venv/Scripts/pip3 freeze > requirements.txt
+# Para criar um arquivo listando todas as bibliotecas em nosso projeto
+# Esse comando deve ser sempre executado para atualizar essa listando
