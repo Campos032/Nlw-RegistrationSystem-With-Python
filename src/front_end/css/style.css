@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url(./reset.css);
+@import url(./variables.css);
+
+body {
+    background: var(--bg-black-desktop) no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+}
+
+#centerDiv {
+    background-color: var(--div-background-darkmode);
+    backdrop-filter: blur(1px);
+    border: 1px solid var(--stroke-color2);
+    border-radius: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    color: var(--text-color1);
+    letter-spacing: 5px;
+    margin: 20px 20px 0px;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    list-style: none;
+}
+
+ul li a {
+    color: var(--text-color2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(4px);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+ul li a:hover {
+    background: var(--surface-color-hover);
+    border: 1px solid var(--text-color);
+  }

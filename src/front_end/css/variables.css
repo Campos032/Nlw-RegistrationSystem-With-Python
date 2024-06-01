@@ -1,0 +1,12 @@
+:root {
+    --bg-black-desktop: url(/src/front_end/assets/bg-darkmode-desktop.jpg);
+    --bg-light-desktop: url(/src/front-end/assets/bg-lightmode-desktop.jpg);
+    --text-color1: rgb(255, 248, 248);
+    --text-color2: rgb(255, 255, 255);
+    --div-background-darkmode: rgb(255, 255, 255, 0.03);
+    --surface-color: rgba(19, 9, 9, 0.2);
+    --surface-color-hover: rgb(255, 255, 255, 0);
+    --stroke-color: rgba(172, 240, 252, 0.151);
+    --stroke-color2: rgba(172, 240, 252, 0.065);
+    --label-color: rgb(247, 255, 210);
+}
