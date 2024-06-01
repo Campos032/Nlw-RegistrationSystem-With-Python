@@ -7,6 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 from src.errors.error_types.http_conflict import HttpConflictError
 
+
 class AttendessRepository:
     def insert_attendee(self, attendee_info: Dict) -> Dict:
         with db_connetction_handler as database:
@@ -17,18 +18,18 @@ class AttendessRepository:
                         name=attendee_info.get("name"),
                         email=attendee_info.get("email"),
                         event_id=attendee_info.get("event_id"))
-                    )
+                )
                 database.session.add(attendee)
                 database.session.commit()
-                            
+
                 return attendee_info
-            
+
             except IntegrityError:
-                    raise HttpConflictError('Participante já cadastrado!')
+                raise HttpConflictError('Participante já cadastrado!')
             except Exception as exception:
                 database.session.rollback()
                 raise exception
-    
+
     def get_attendee_badge_by_id(self, attendee_id: str) -> Attendees:
         with db_connetction_handler as database:
             try:
@@ -36,7 +37,7 @@ class AttendessRepository:
                     database.session
                     .query(Attendees)
                     .join(Events)
-                    .filter(Attendees.id==attendee_id)
+                    .filter(Attendees.id == attendee_id)
                     .with_entities(
                         Attendees.name,
                         Attendees.email,
@@ -52,16 +53,16 @@ class AttendessRepository:
         with db_connetction_handler as database:
             attendees = (
                 database.session
-                    .query(Attendees)
-                    .outerjoin(CheckIns, CheckIns.attendeeId==Attendees.id)
-                    .filter(Attendees.event_id==event_id)
-                    .with_entities(
-                        Attendees.id,
-                        Attendees.name,
-                        Attendees.email,
-                        CheckIns.created_at.label("checkdInAt"),
-                        Attendees.created_at.label("createdAt")
-                    )
-                    .all()
-            )  
+                .query(Attendees)
+                .outerjoin(CheckIns, CheckIns.attendeeId == Attendees.id)
+                .filter(Attendees.event_id == event_id)
+                .with_entities(
+                    Attendees.id,
+                    Attendees.name,
+                    Attendees.email,
+                    CheckIns.created_at.label("checkdInAt"),
+                    Attendees.created_at.label("createdAt")
+                )
+                .all()
+            )
             return attendees

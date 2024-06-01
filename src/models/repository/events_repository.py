@@ -6,6 +6,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 from src.errors.error_types.http_conflict import HttpConflictError
 
+
 class EventsRepository:
     def insert_event(self, eventsInfo: Dict) -> Dict:
         with db_connetction_handler as database:
@@ -19,45 +20,44 @@ class EventsRepository:
                 )
                 database.session.add(event)
                 database.session.commit()
-                
+
                 return eventsInfo
             except IntegrityError:
                 raise HttpConflictError('Evento já cadastrado!')
-            
+
             except Exception as exception:
                 database.session.rollback()
                 raise exception
-        
-    def get_event_by_id(self, event_id:str) -> Events:
+
+    def get_event_by_id(self, event_id: str) -> Events:
         try:
             with db_connetction_handler as database:
-                event = (database.session.query(Events).filter(Events.id==event_id)).one()
+                event = (database.session.query(Events).filter(Events.id == event_id)).one()
                 return event
         except NoResultFound:
             return None
-    
+
     def count_event_attendees(self, event_id: str) -> Dict:
         with db_connetction_handler as database:
             event_count = (
                 database.session
                 .query(Events)
                 .join(Attendees, Events.id == Attendees.event_id)
-                .filter(Events.id==event_id)
+                .filter(Events.id == event_id)
                 .with_entities(
                     Events.maximum_attendees,
                     Attendees.id
                 )
                 .all()
             )
-            
+
             if not len(event_count):
                 return {
                     "maximumAttendees": 0,
                     "attendeesAmount": 0
                 }
-            
+
             return {
                 "maximumAttendees": event_count[0].maximum_attendees,
                 "attendeesAmount": len(event_count)
             }
-                

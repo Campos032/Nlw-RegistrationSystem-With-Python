@@ -2,6 +2,7 @@ from src.http_types.http_response import HttpResponse
 from src.errors.error_types.http_not_found import HttpNotFoundError
 from src.errors.error_types.http_conflict import HttpConflictError 
 
+
 def handler_error(error: Exception) -> HttpResponse:
     if isinstance(error, (HttpConflictError, HttpNotFoundError)):
         return HttpResponse(
@@ -16,7 +17,7 @@ def handler_error(error: Exception) -> HttpResponse:
         
     return HttpResponse(
         body={
-            "errors":{
+            "errors": {
                 "title": "error",
                 "details": str(error)
             }

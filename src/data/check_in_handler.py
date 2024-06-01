@@ -2,6 +2,7 @@ from src.models.repository.check_ins_repository import CheckInRepository
 from src.http_types.http_request import HttpRequest
 from src.http_types.http_response import HttpResponse
 
+
 class CheckInHandler:
     def __init__(self) -> None:
         self.__check_in_repository = CheckInRepository()

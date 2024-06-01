@@ -4,6 +4,7 @@ from .attendees_repository import AttendessRepository
 
 db_connetction_handler.connect_to_db()
 
+
 @pytest.mark.skip(reason="Novo Registro No Banco De Dados")
 def test_insert_attendee():
     event_id = "meu_id_para_teste"
@@ -16,6 +17,7 @@ def test_insert_attendee():
     attendees_repository = AttendessRepository()
     response = attendees_repository.insert_attendee(attendees_info)
     print(response)
+
 
 @pytest.mark.skip(reason="Desnecessário por ser teste de integração")
 def test_get_attendee_badge_by_id():
